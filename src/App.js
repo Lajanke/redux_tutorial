@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as styles from './styles'
+import Container from './containers/Container';
 
 class App extends Component {
 
   render() {
   
     return (
-      <div className="App">
-        <div style={styles.styles}>
-          Styles
-        </div>
-        <button>Button 1</button>
-        React
-      </div>
+      <Container />
     );
   }
 }
