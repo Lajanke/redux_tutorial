@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 class container extends Component {
 
     render() {
+        const user_text = 'text 1'
         return (
             <div>
                 <button onClick={() => console.log(this.props.stateprop1)}>Get State</button>
@@ -15,6 +16,13 @@ class container extends Component {
                 <button onClick={() => this.props.action2()}>Dispatch Action 2</button>
                 <button onClick={() => this.props.action_creator1()}>Dispatch Action Creator 1</button>
                 <button onClick={() => this.props.action_creator2()}>Dispatch Action Creator 2</button>
+                <button onClick={() => this.props.action_creator3(user_text)}>Dispatch Action Creator 3</button>
+                {this.props.user_input 
+                ? <h1>
+                    {this.props.user_input}
+                </h1>
+                : null
+                }
             </div>
         )
     }
@@ -22,7 +30,8 @@ class container extends Component {
 
 function mapStateToProps(state) {
     return {
-        stateprop1: state.stateprop1
+        stateprop1: state.reducer1.stateprop1,
+        user_input: state.user_reducer.user_text
     }
 }
 
@@ -31,7 +40,8 @@ function mapDispatchToProps(dispatch) {
         action1: () => dispatch(ACTIONS.SUCCESS),
         action2: () => dispatch(ACTIONS.FAILURE),
         action_creator1: () => dispatch(ACTIONS.success()),
-        action_creator2: () => dispatch(ACTIONS.failure())
+        action_creator2: () => dispatch(ACTIONS.failure()),
+        action_creator3: (text) => dispatch(ACTIONS.user_input(text))
     }
 }
 
